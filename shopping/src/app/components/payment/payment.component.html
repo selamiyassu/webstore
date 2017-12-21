@@ -1,0 +1,54 @@
+<div class="mainContainer">
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" >
+
+          <fieldset >
+             <div> <label>Card Type             
+              </label>
+          </div>
+          <div class="custom-control custom-radio">
+              <label for="visas">
+                      <input formControlName="cardtype"  id="visas" name="cardtype" type="radio" value="visa" >VISA
+                     </label> | 
+                 <label for="americanExpress">
+                      <input formControlName="cardtype"  id="americanExpress" name="cardtype" type="radio" value="americanExpress" >American Express
+                     </label>  | 
+                 <label for="mastercard"> 
+                     <input formControlName="cardtype"  id="mastercard" name="cardtype" type="radio" value="mastercard" >Mastercard
+                 </label>
+  </div>
+                 <div class="form-group">
+              <label for="card">Card Number</label>
+                  <input id="card" type="text" name="cardNumber" formControlName="cardNumber" required pattern="\d{12}" maxlength="12" >
+                  <div class="alert alert-danger"  *ngIf="paymentForm.controls['cardNumber'].touched && !paymentForm.controls['cardNumber'].valid">
+                    Invalid Card Number - 12 digit required
+                  </div>
+              
+          </div>
+          <div class="form-group">
+              <label for="security">Security Code:</label>
+                      <input type="text"id="security" name="securitycode"  formControlName="securitycode" maxlength="3" required   pattern="\d{3}"> 
+                      <div class="alert alert-danger"  *ngIf="paymentForm.controls['securitycode'].touched && !paymentForm.controls['securitycode'].valid">
+                        Invalid Security Code - 3 digit required
+                      </div>
+  
+              </div>
+              <div class="form-group">
+                  <label >Expriration Date: </label>
+                      <input type="text" id="security" name="exprirationmonth"  placeholder="mm" formControlName="exprirationmonth"  maxlength="2" required   pattern="\d{2}"> 
+                      <!-- <div *ngIf="exprirationmonth.errors.required">Security Code is required.</div>
+                      <div *ngIf="exprirationmonth.errors.pattern">Security Coder does not match the pattern.</div>
+                      <div *ngIf="exprirationmonth.errors.maxlength">Security Coder should be 2 characters.</div>    -->
+                     
+                      <input type="text" name="exprirationyear" placeholder="yy"  formControlName="exprirationyear"  maxlength="2" required   pattern="\d{2}">
+                      <!-- <div *ngIf="exprirationyear.errors.required">Security Code is required.</div>
+                      <div *ngIf="exprirationyear.errors.pattern">Security Coder does not match the pattern.</div>
+                      <div *ngIf="exprirationyear.errors.maxlength">Security Coder should be 2 characters.</div>    -->
+  
+              </div>
+
+          </fieldset>
+          <button [disabled]="!paymentForm.valid"  type="submit" class="btn btn-primary">Submit</button>
+      
+      </form>
+      
+  </div>
